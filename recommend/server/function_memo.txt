@@ -1,0 +1,20 @@
+各ts ファイルに記載されている関数の詳細をメモしておく
+
+register処理(新規登録処理)
+    1.register.ts
+        - (Async)saveurl関数
+            登録用のurlを生成して一時的に保存する。
+        - (Async)sendmail関数
+            フォームに入力されて送られてきたメールアドレス宛てに登録用のURLを送信
+
+メール認証後expressでリダイレクトさせる場合res.sendが使えなくなるので
+Angularサイドでルーティングする必要がある
+
+
+下記のコードで配列に入っている連想配列内の値をすべてとりだす
+  const tag = JSON.parse(req.body.tag);
+  // 重要↓
+  let tags = [];
+  tags = tag.map(data => {
+    return data.value;
+  });

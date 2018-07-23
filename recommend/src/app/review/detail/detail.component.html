@@ -1,0 +1,57 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar [style.background-image]="'url(' + items.prop + ')'" class="profile_card_image"></div>
+    <div class="favorite">
+      <label>お気に入り {{ favdata.favoInt }}</label>
+      <button mat-icon-button (click)='toggleMenu(favdata)' color="{{ favdata.favost ? 'warn':'disabled' }}">
+        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+      </button>
+    </div>
+    <mat-card-title>{{ items.name }}</mat-card-title>
+    <mat-card-subtitle>{{ items.uday }}</mat-card-subtitle>
+    <!-- <mat-card-title>{{ items.name }}</mat-card-title>
+    <mat-card-subtitle>{{ items.uday }}</mat-card-subtitle> -->
+  </mat-card-header>
+  <mat-card-content>
+    <h1>{{ items.title }}</h1>
+    <h2>薦めたい所</h2>
+    <p>{{ items.recommend }}</p>
+    <h2>改善してほしい所</h2>
+    <p>{{ items.improvement }}</p>
+    <div *ngFor="let self of selfcontents">
+    <h2>{{ self.title }}</h2>
+    <p>{{ self.body }}</p>
+    <div class="review_img" s>
+      <img src="{{ self.img }}" alt="">
+    </div>
+    </div>
+  </mat-card-content>
+  <button mat-raised-button class="report-button" (click)="openDialog()" color="warn">
+    <i class="material-icons">report</i>通報</button>
+    <!-- <div ngIf="isReport"></div> -->
+</mat-card>
+<mat-card class="comment-card">
+  <h2>コメント投稿</h2>
+  <mat-form-field>
+    <textarea matInput rows="6" cols="40" placeholder="ここに記入してください" [formControl]="this.commentForm.controls.comment" [errorStateMatcher]="matcher"></textarea>
+    <mat-error *ngIf="commentForm.controls.comment.hasError('required')">
+      <strong>*</strong>必須項目
+    </mat-error>
+  </mat-form-field>
+  <button class="submit" mat-raised-button (click)="com_upload()" [disabled]="!commentForm.valid" color="primary">コメントを投稿</button>
+
+<h2>コメント</h2>
+<ng-container *ngFor="let data of commentdata">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar [style.background-image]="'url(' + data.prop + ')'" class="profile_card_image"></div>
+      <!-- ここにコメントを書いた人の情報を入れる、上のアバターもコメントした人のもの -->
+      <mat-card-title>{{ data.name }}</mat-card-title>
+      <mat-card-subtitle>{{ data.uid }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ data.text }}</p>
+    </mat-card-content>
+  </mat-card>
+</ng-container>
+</mat-card>

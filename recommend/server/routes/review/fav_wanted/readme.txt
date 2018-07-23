@@ -1,0 +1,1 @@
+favst = favoritestatus（確認用）

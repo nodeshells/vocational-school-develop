@@ -1,0 +1,62 @@
+<mat-card *ngIf="!appstate.isLogin">
+<form [formGroup]="registerForm">
+    <mat-form-field>
+      <input matInput placeholder="Email" [formControl]="this.registerForm.controls.Email" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="this.registerForm.controls.Email.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+      <mat-error *ngIf="this.registerForm.controls.Email.hasError('email')">
+        <strong>*</strong>正しいメールアドレスを入力してください。
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="ユーザーID" [formControl]="this.registerForm.controls.userId" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="this.registerForm.controls.userId.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+      <mat-error *ngIf="this.registerForm.controls.userId.hasError('required')">
+        <strong>*</strong>数字のみのユーザーIDは使用できません。
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput type="password" placeholder="パスワード" [formControl]="this.registerForm.controls.password" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="this.registerForm.controls.password.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+      <mat-error *ngIf="this.registerForm.controls.password.hasError('required')">
+        <strong>*</strong>英数字8文字以上16文字以下で登録してください。
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput type="password" placeholder="パスワード確認" [formControl]="this.registerForm.controls.confirmPassword" [errorStateMatcher]="matcher" (input)="checkPasswordChange()">
+      <mat-error *ngIf="registerForm.controls.confirmPassword.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <span *ngIf="!checkPasswordChange()" class="errorPassword">
+            <strong>*</strong>パスワードが一致しません。
+    </span>
+    <mat-form-field >
+      <input matInput placeholder="ユーザー名" [formControl]="this.registerForm.controls.userName" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="registerForm.controls.userName.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <div class="sexform">
+        <label>性別：</label>
+        <mat-radio-group [formControl]="this.registerForm.controls.sex">
+            <mat-radio-button value="male">男</mat-radio-button>
+            <mat-radio-button value="female">女</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker3" placeholder="誕生日を入力してください" [formControl]="this.registerForm.controls.birthday">
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput placeholder="自己紹介" [formControl]="this.registerForm.controls.intro" [errorStateMatcher]="matcher">
+    </mat-form-field>
+    <button mat-raised-button (click)="onSubmit()" [disabled]="!registerForm.valid">登録</button>
+  </form>
+</mat-card>

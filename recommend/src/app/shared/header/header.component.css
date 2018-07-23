@@ -1,0 +1,36 @@
+.logo{
+  height: 33px;
+}
+.title{
+  width:140px;
+  height: 30px;
+  fill: white;
+}
+.titleGroup{
+  text-decoration: none;
+  zoom: 1.5;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+mat-toolbar{
+  position: relative;
+}
+svg{
+  fill: rgb(204, 179, 179);
+}
+
+@media screen and (max-width:600px) {
+  span{
+    zoom: 1.2;
+  }
+  .title{
+    display: none;
+  }
+}
+@media screen and (max-width:460px) {
+  span{
+    zoom: 1.1;
+  }
+}
+

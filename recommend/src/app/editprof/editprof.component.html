@@ -1,0 +1,9 @@
+<mat-card class="editprof">
+  <h2>プロフィール画像の変更</h2>
+  <div class="flex">
+  <div *ngFor="let image of images;let i = index;" class="item">
+    <img src="{{ image.path }}" alt="">
+    <button mat-raised-button color="primary" (click)="onSubmit(i)">この画像にする</button>
+  </div>
+  </div>
+</mat-card>

@@ -1,0 +1,63 @@
+mat-card{
+  width: 70%;
+  margin: 50px auto;
+}
+.maintitle input{
+  font-size: 30px;
+}
+.mat-option {
+  font-size: inherit;
+  line-height: 2.8em!important;
+  height: 2.5em!important;
+}
+.previewImg{
+  width: 300px;
+  margin: 15px 0;
+}
+.previewImg img{
+  width: 100%;
+}
+label{
+  color: #fff;
+  background-color: #e53935;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+}
+mat-form-field{
+  width: 100%;
+  margin-bottom: 20px;
+}
+.cate-radio-group {
+  display: inline-flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.margin10{
+  margin-top: 10px;
+}
+.margin30{
+  margin-top: 30px;
+}
+.cate-radio-button {
+  margin: 5px;
+}
+@media (max-width:767px){
+  mat-card{
+    width: 80%;
+    margin: 20px auto;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+  }
+  mat-form-field{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

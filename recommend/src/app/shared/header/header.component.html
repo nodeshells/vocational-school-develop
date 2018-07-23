@@ -1,0 +1,14 @@
+<mat-toolbar class="mat-elevation-z6" color="primary">
+  <a routerLink="/contents/mypage" class="titleGroup">
+      <span><mat-icon svgIcon="logo" class="logo">icon</mat-icon></span>
+      <span><mat-icon svgIcon="title" class="title">recommend</mat-icon></span>
+  </a>
+  <span class="spacer"></span>
+  <div class="button-row">
+    <a mat-raised-button routerLink="/cert/login" *ngIf="!appstate.isLogin">ログイン</a>
+    <a mat-raised-button routerLink="/cert/register" *ngIf="!appstate.isLogin">登録</a>
+    <a mat-raised-button routerLink="/contents/review" *ngIf="appstate.isLogin">レビュー</a>
+    <a mat-raised-button routerLink="/contents/post" *ngIf="appstate.isLogin">レビュー投稿</a>
+    <a mat-raised-button routerLink="/" (click)="logout()" *ngIf="appstate.isLogin"> ログアウト</a>
+  </div>
+  </mat-toolbar>

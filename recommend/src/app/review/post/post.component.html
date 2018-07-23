@@ -1,0 +1,66 @@
+<mat-card>
+  <form [formGroup]="reviewForm">
+    <h2>タイトル</h2>
+    <mat-form-field class="maintitle">
+      <input matInput placeholder="レビュータイトル" [formControl]="this.reviewForm.controls.mainTitle" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="reviewForm.controls.mainTitle.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <h2>評価</h2>
+    <star-rating-comp class="star-rating" [starType]="'icon'" [formControl]="this.reviewForm.controls.star" ></star-rating-comp>
+    <h2>カテゴリー選択</h2>
+    <mat-form-field>
+    <mat-select placeholder="カテゴリー" [formControl]="this.reviewForm.controls.category" required>
+      <mat-option *ngFor="let category of categories" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="reviewForm.controls.category.hasError('required')">
+      <strong>*</strong>必須項目
+    </mat-error>
+    </mat-form-field>
+    <h2>薦めたい所</h2>
+    <mat-form-field>
+      <textarea matInput rows="6" cols="40" placeholder="ここに記入してください" [formControl]="this.reviewForm.controls.recommend" [errorStateMatcher]="matcher"></textarea>
+      <mat-error *ngIf="reviewForm.controls.recommend.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <h2>改善してほしい所</h2>
+    <mat-form-field>
+      <textarea matInput rows="6" cols="40" placeholder="ここに記入してください" [formControl]="this.reviewForm.controls.improvement" [errorStateMatcher]="matcher"></textarea>
+      <mat-error *ngIf="reviewForm.controls.improvement.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <h2>また購入したいですか？</h2>
+    <mat-form-field>
+      <textarea matInput rows="6" cols="40" placeholder="ここに記入してください" [formControl]="this.reviewForm.controls.cateAnswer" [errorStateMatcher]="matcher"></textarea>
+      <mat-error *ngIf="reviewForm.controls.cateAnswer.hasError('required')">
+        <strong>*</strong>必須項目
+      </mat-error>
+    </mat-form-field>
+    <div formArrayName="selfContents">
+      <div *ngFor="let content of selfContents.controls; let i = index;" [formGroupName]="i">
+        <mat-form-field class="maintitle">
+          <input matInput placeholder="タイトル" formControlName="title">
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput rows="6" cols="40" placeholder="内容"  formControlName="body"></textarea>
+        </mat-form-field>
+        <input hidden [id] = "i" name="upfile" type="file" #fl accept="image/*" (change)="upload(fl.files,resId(i))"/>
+        <label [for] = "i" class="mat-raised-button mat-basic">画像をアップロード</label>
+        <div class="previewImg">
+          <img [src] = "content.value.img">
+        </div>
+      </div>
+    </div>
+    <h2>タグを追加</h2>
+    <tag-input [formControl]="this.reviewForm.controls.tag"></tag-input>
+    <p>Enterキーを押すことでタグを追加出来ます</p>
+    <button mat-raised-button class="margin10" (click)="addSection()">要素追加</button>
+    <button mat-raised-button class="margin30" (click)="onSubmit()" [disabled]="!reviewForm.valid" color="warn">レビューを投稿</button>
+  </form>
+  <!-- <pre>Form value: {{ reviewForm.value | json }}</pre> -->
+</mat-card>

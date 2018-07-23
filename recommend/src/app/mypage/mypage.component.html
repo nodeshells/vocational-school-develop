@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="head_image">
+    <img src="./assets/user1/user1_header.jpg">
+  </div>
+  <div class="head_profile">
+    <a routerLink="/contents/edit" class="edit_profile">
+      <img src="{{items.prop}}">
+      <div class="mask">
+        <div class="caption">プロフィール編集</div>
+      </div>
+    </a>
+  </div>
+  <div class="flex_container">
+    <div class="profile_card">
+      <mat-card>
+        <div class="">
+          <h2>ユーザーID</h2>
+          <i class="material-icons">language</i>{{user.uid}}
+        </div>
+        <div class="">
+          <h2>ユーザ名</h2>
+          <i class="material-icons">account_circle</i>{{user.name}}
+        </div>
+        <div class="">
+          <h2>Mail</h2>
+          <i class="material-icons">email</i>{{user.email}}
+        </div>
+        <div class="">
+          <h2>自己紹介</h2>
+          <div class="profile_desc">{{user.syoukai}}</div>
+        </div>
+        <mat-card-content>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="timeline">
+      <ng-container *ngFor="let data of archives">
+        <mat-card class="timeline_card">
+          <mat-card-header>
+            <div mat-card-avatar [style.background-image]="'url(' + items.prop + ')'" class="profile_card_image"></div>
+            <mat-card-title><a routerLink="/contents/detail" [queryParams]='{ id: data.id }' class="edit_profile">{{ data.title }}</a></mat-card-title>
+            <mat-card-subtitle>{{user.uid}}</mat-card-subtitle>
+            <span class="spacer"></span>
+            <!-- <div class="favorite">
+              <label>{{ data.favoInt }}</label>
+              <button mat-icon-button (click)='toggleMenu(data)' color="{{ data.favorite ? 'warn':'disabled' }}">
+                <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+              </button>
+            </div> -->
+          </mat-card-header>
+          <!-- <img mat-card-image src={{data.img}} alt="Photo of a Shiba Inu"> -->
+          <mat-card-content>
+            <p>{{ data.recommend }}</p>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+    </div>
+  </div>
+</div>

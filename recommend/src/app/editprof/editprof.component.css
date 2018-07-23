@@ -1,0 +1,35 @@
+mat-card{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 50px auto;
+}
+.flex{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.item{
+  width: 300px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.item img{
+  width: 100%;
+  border-radius: 50%;
+  border: #000 1px solid;
+  margin-bottom: 20px;
+}
+@media (max-width:767px){
+  mat-card{
+    width: 80%;
+    margin: 20px auto;
+  }
+  .item{
+    width: 300px;
+    margin-bottom: 30px;
+  }
+}

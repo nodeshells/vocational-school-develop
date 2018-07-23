@@ -1,0 +1,18 @@
+<mat-card *ngIf="!appstate.isLogin">
+    {{responseJson.replace(replace,'')}}
+<form [formGroup]="loginForm">
+  <mat-form-field>
+    <input matInput placeholder="ユーザーID・Email" [formControl]="this.loginForm.controls.userName" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="loginForm.controls.userName.hasError('required')">
+      <strong>*</strong>ユーザーID・メールアドレスと入力してください
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input matInput type="password" placeholder="パスワード" [formControl]="this.loginForm.controls.password" [errorStateMatcher]="matcher">
+    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+      <strong>*</strong>パスワードを入力してください
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button (click)="onSubmit()">ログイン</button>
+</form>
+</mat-card>
